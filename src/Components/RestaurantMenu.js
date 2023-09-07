@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // import useParams for read `resId`
 import {
   swiggy_menu_api_URL,
