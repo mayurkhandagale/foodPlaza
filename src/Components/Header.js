@@ -1,12 +1,13 @@
 import { useState } from "react";
-import FoodFireLogo from "../../Images/FoodPlaza.png";
+import FoodPlazaLogo from "../../Images/FoodPlaza.png";
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 // Title component for display logo
 const Title = () => (
   <a href="/">
     <img
       className="logo"
-      src={FoodFireLogo}
+      src={FoodPlazaLogo}
       alt="Food Plaza"
       title="Food Plaza"
     />
@@ -17,7 +18,8 @@ const Title = () => (
 const Header = () => {
   // use useState for user logged in or logged out
   const [isLoggedin, setIsLoggedin] = useState(true);
-
+  const cartItems = useSelector(store => store.cart.items);
+  console.log(cartItems);
   return (
     <div className="header">
       <Title />
@@ -27,7 +29,9 @@ const Header = () => {
           <li><Link to='/about'>About</Link></li>
           <li><Link to='/contact'>Contact</Link></li>
           <li>
-            <i className="fas fa-shopping-cart"></i>
+            <Link to='/cart'>
+              <i className="fas fa-shopping-cart">{cartItems.length}</i>
+            </Link>
           </li>
           <li>
             {/* use conditional rendering for login and logout */}
