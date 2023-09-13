@@ -1,9 +1,9 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
 import Footer from "./Components/Footer";
-import About from "./Components/About";
+//import About from "./Components/About";
 import Error from "./Components/Error";
 import Contact from "./Components/Contact";
 import RestaurantMenu from "./Components/RestaurantMenu";
@@ -12,6 +12,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from './utils/store';
 import Cart from "./Components/Cart";
+
+//lazy loading for the component About
+const About = lazy(() => import("./Components/About"));
 
 const AppLayout = () => {
   return (
@@ -35,7 +38,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: <Suspense><About /></Suspense>,
         children: [{
           path: "profile",
           element: <Profile />
