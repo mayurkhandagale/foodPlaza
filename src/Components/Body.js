@@ -8,7 +8,7 @@ import useResData from "../Hooks/useResData";
 // Filter the restaurant data according input type
 function filterData(searchText, restaurants) {
   const filterData = restaurants.filter((restaurant) =>
-    restaurant?.data?.name.toLowerCase().includes(searchText.toLowerCase())
+    restaurant?.info?.name.toLowerCase().includes(searchText.toLowerCase())
   );
   return filterData;
 }
@@ -42,17 +42,18 @@ const Body = () => {
 
   return (
     <>
-      <div className="search-container">
+      <div className="mx-auto mt-[100px] mb-[20px] text-center relative max-w-[100%]">
         <input
           type="text"
-          className="search-input"
+          className="w-[50%] box-border rounded-b-md rounded-t-md bg-white shadow-[1px_2px_4px_0px_rgba(0,0,0,0.08)] py-[14px] px-[10%]
+          border-[1px] border-[rgba(170, 188, 202)] border-r-0 border-solid text-black outline-none"
           placeholder="Search a restaurant you want..."
           value={searchText}
           // update the state variable searchText when we typing in input box
           onChange={(e) => setSearchText(e.target.value)}
         ></input>
         <button
-          className="search-btn"
+          className="rounded-r-md rounded-t-md bg-orange-500 px-[22px] py-[15px] m-[-4px] border-none outline-none text-white hover:bg-green-500"
           onClick={() => {
             // user click on button searchData function is called
             searchData(searchText, allRestaurants);
@@ -67,7 +68,7 @@ const Body = () => {
       {allRestaurants?.length === 0 && FilterRes?.length === 0 ? (
         <Shimmer />
       ) : (
-        <div className="restaurant-list">
+        <div className="flex w-auto flex-wrap items-center justify-center self-stretch">
           {/* We are mapping restaurants array and passing JSON array data to RestaurantCard component as props with unique key as restaurant.data.id */}
           {(filteredRestaurants === null ? FilterRes : filteredRestaurants).map((restaurant) => {
             return (

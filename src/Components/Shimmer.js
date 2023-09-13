@@ -3,12 +3,16 @@ import { shimmer_card_unit, shimmer_menu_card_unit } from "../utils/constants";
 // Shimmer card to display with animation
 const CardShimmer = () => {
   return (
-    <div className="shimmer-card">
-      <div className="shimmer-img stroke animate"></div>
-      <div className="shimmer-title stroke animate"></div>
-      <div className="shimmer-tags stroke animate "></div>
-      <div className="shimmer-details stroke animate "></div>
+    <div class="border border-gray-300 shadow rounded-md p-4 max-w-[250px] h-60 w-full mx-auto">
+      <div class="animate-pulse flex flex-col space-x-4">
+        <div class="rounded bg-slate-400 h-28 w-52 mb-10"></div>
+        <div class="flex-1 space-y-10 py-1">
+          <div class="h-2 w-36 bg-slate-400 rounded"></div>
+          <div class="h-2 w-36 bg-slate-400 rounded "></div>
+        </div>
+      </div>
     </div>
+
   );
 };
 
@@ -54,7 +58,7 @@ export const MenuShimmer = () => {
 
 const Shimmer = () => {
   return (
-    <div className="shimmer-container">
+    <div className="flex flex-wrap gap-6 justify-center">
       {/* create a new Array instance using Array() constructor and map through every element of array */}
       {Array(shimmer_card_unit).fill("").map((element, index) => {
         return <CardShimmer key={index} />;

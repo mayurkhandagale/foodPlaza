@@ -7,10 +7,10 @@ const FoodItemCard = ({
   price
 }) => {
   return (
-    <div className="card">
-      <img src={IMG_CDN_URL + imageId} />
+    <div className="w-[240px] rounded-[10px] p-3 m-5 cursor-pointer shadow-2xl hover:scale-105">
+      <img className="w-[100%] rounded-[10px]" src={IMG_CDN_URL + imageId} />
       <h3>{name}</h3>
-      <h4 >Ruppes: {price / 100}</h4>
+      <h4 className="font-light">Ruppes: {price / 100}</h4>
     </div>
   );
 };

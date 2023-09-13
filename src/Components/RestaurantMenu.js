@@ -28,20 +28,20 @@ const RestaurantMenu = () => {
   return !restaurant ? (
     <MenuShimmer />
   ) : (
-    <div className="restaurant-menu">
-      <div className="restaurant-summary">
+    <div className="mt-24 min-h-[80vh] w-auto">
+      <div className="flex h-48 justify-center items-center bg-[rgb(23,23,23)] text-white">
         <img
-          className="restaurant-img"
+          className="w-[250px] h-[170px] rounded-[5px]"
           src={IMG_CDN_URL + restaurant?.cloudinaryImageId}
           alt={restaurant?.name}
         />
-        <div className="restaurant-summary-details">
-          <h2 className="restaurant-title">{restaurant?.name}</h2>
-          <p className="restaurant-tags">{restaurant?.cuisines?.join(", ")}</p>
-          <div className="restaurant-details">
-            <div className="restaurant-rating" style={
+        <div className="flex flex-col basis-[520px] m-5">
+          <h2 className="text-4xl max-w-lg font-light">{restaurant?.name}</h2>
+          <p className="whitespace-nowrap text-inherit opacity-[0.7] text-[15px] max-w-lg">{restaurant?.cuisines?.join(", ")}</p>
+          <div className="flex mt-4 justify-between items-center text-[12px] font-medium pb-3 text-inherit max-w-[340px]">
+            <div className="flex items-center px-2 py-1 gap-1 bg-green-700 rounded-md" style={
               (restaurant?.avgRating) < 4
-                ? { backgroundColor: "var(--light-red)" }
+                ? { backgroundColor: "red" }
                 : (restaurant?.avgRating) === "--"
                   ? { backgroundColor: "white", color: "black" }
                   : { color: "white" }
@@ -49,28 +49,28 @@ const RestaurantMenu = () => {
               <i className="fa-solid fa-star"></i>
               <span>{restaurant?.avgRating}</span>
             </div>
-            <div className="restaurant-rating-slash">|</div>
+            <div >|</div>
             <div>{restaurant?.sla?.slaString}</div>
-            <div className="restaurant-rating-slash">|</div>
+            <div>|</div>
             <div>{restaurant?.costForTwoMessage}</div>
           </div>
         </div>
       </div>
 
-      <div className="restaurant-menu-content">
-        <div className="menu-items-container">
-          <div className="menu-title-wrap">
-            <h3 className="menu-title">Recommended</h3>
-            <p className="menu-count">
+      <div className="flex justify-center">
+        <div className="mt-7 w-[850px]">
+          <div className="p-5">
+            <h3 className="font-bold" >Recommended</h3>
+            <p className="mt-3 leading-snug text-[rgba(40,44,63,0.45) tracking-[-0.3] text-[1 rem]">
               {menuItems.length} ITEMS
             </p>
           </div>
-          <div className="menu-items-list">
+          <div className="flex flex-col justify-center">
             {menuItems.map((item) => (
-              <div className="menu-item" key={item?.id}>
-                <div className="menu-item-details">
-                  <h3 className="item-title">{item?.name}</h3>
-                  <p className="item-cost">
+              <div className="flex justify-between max-h-[250px] p-5 border-b-2 border-b-red-300 " key={item?.id}>
+                <div className="flex flex-col self-start overflow-hidden">
+                  <h3 className="w-[60%] font-bold">{item?.name}</h3>
+                  <p className="mt-3 font-semibold leading-5 text-black w-[60%] tracking-[-0.3px] text-sm">
                     {item?.price > 0
                       ? new Intl.NumberFormat("en-IN", {
                         style: "currency",
@@ -78,17 +78,17 @@ const RestaurantMenu = () => {
                       }).format(item?.price / 100)
                       : " "}
                   </p>
-                  <p className="item-desc">{item?.description}</p>
+                  <p className="mt-3 leading-5 text-black w-[60%] tracking-[-0.3px] text-sm">{item?.description}</p>
                 </div>
-                <div className="menu-img-wrapper">
+                <div className="flex flex-col justify-center items-end w-52 overflow-hidden">
                   {item?.imageId && (
                     <img
-                      className="menu-item-img"
+                      className="h-24 w-24 rounded-sm"
                       src={ITEM_IMG_CDN_URL + item?.imageId}
                       alt={item?.name}
                     />
                   )}
-                  <button className="add-btn" onClick={() => addFoodItem(item)}> ADD +</button>
+                  <button className="bg-orange-400 text-black py-2 px-6 cursor-pointer outline-none border-orange-500 mt-3 rounded hover:bg-green-700" onClick={() => addFoodItem(item)}> ADD +</button>
                 </div>
               </div>
             ))}
