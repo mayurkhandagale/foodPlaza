@@ -21,17 +21,17 @@ const Header = () => {
   const cartItems = useSelector(store => store.cart.items);
   console.log(cartItems);
   return (
-    <div class="flex items-center justify-between w-[100vw] h-20 bg-orange-200 rounded-md shadow-lg text-black font-bold fixed top-0 left-0 
+    <div className="flex items-center justify-between w-[100vw] h-20 bg-white rounded-md shadow-lg text-black font-bold fixed top-0 left-0 
     overflow-y-hidden z-[999]">
       <Title />
       <div className="flex items-center justify-between mr-8">
         <ul className="flex items-center justify-between">
-          <li className="p-3"><Link to='/'>Home</Link></li>
-          <li className="p-3"><Link to='/about'>About</Link></li>
-          <li className="p-3"><Link to='/contact'>Contact</Link></li>
+          <li className="p-3"><Link to='/'><i class="fa-solid fa-house m-2"></i>Home</Link></li>
+          <li className="p-3"><Link to='/about'><i class="fa-regular fa-address-card m-2"></i>About</Link></li>
+          <li className="p-3"><Link to='/contact'> <i class="fa-regular fa-address-book m-2"></i>Contact</Link></li>
           <li className="p-3">
             <Link to='/cart'>
-              <i className="fas fa-shopping-cart">{cartItems.length}</i>
+              <i className="fas fa-shopping-cart mr-2" />{cartItems.length}
             </Link>
           </li>
           <li className="p-3">

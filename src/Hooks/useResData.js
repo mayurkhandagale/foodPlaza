@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 const useResData = (API_URL) => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [banners, setBanners] = useState([]);
+  const [foods, setFoods] = useState([]);
 
   // use useEffect for one time call getRestaurants using empty dependency array
   useEffect(() => {
@@ -13,6 +16,7 @@ const useResData = (API_URL) => {
   async function getRestaurants() {
     // handle the error using try... catch
     try {
+      setIsLoading(true);
       const response = await fetch(API_URL);
       // if response is not ok then throw new Error
       if (!response.ok) {
@@ -23,6 +27,18 @@ const useResData = (API_URL) => {
 
         // initialize checkJsonData() function to check Swiggy Restaurant data
         async function checkJsonData(jsonData) {
+          setBanners(
+            jsonData?.data?.cards.filter(
+              (items) => items?.card?.card?.id === 'topical_banner'
+            )[0]
+          );
+
+          setFoods(
+            jsonData?.data?.cards.filter(
+              (items) => items?.card?.card?.id === 'whats_on_your_mind'
+            )[0]
+          );
+
           for (let i = 0; i < jsonData?.data?.cards.length; i++) {
 
             // initialize checkData for Swiggy Restaurant data
@@ -44,9 +60,11 @@ const useResData = (API_URL) => {
       }
     } catch (error) {
       console.error(error); // show error in console
+    } finally {
+      setIsLoading(false);
     }
   }
 
-  return [allRestaurants, filteredRestaurants];
+  return [allRestaurants, filteredRestaurants, isLoading, banners, foods];
 }
 export default useResData;
