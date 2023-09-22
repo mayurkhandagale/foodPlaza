@@ -9,7 +9,7 @@ import {
 import { MenuShimmer } from "./Shimmer";
 import useResMenuData from "../Hooks/useResMenuData";
 import { useDispatch } from "react-redux";
-import { addItem } from "../utils/cartSlice";
+import { addToCart } from "../utils/cartSlice";
 
 const RestaurantMenu = () => {
   const { resId } = useParams(); // call useParams and get value of restaurant id using object destructuring
@@ -22,7 +22,7 @@ const RestaurantMenu = () => {
   const dispatch = useDispatch();
 
   const addFoodItem = (item) => {
-    dispatch(addItem(item));
+    dispatch(addToCart(item));
   }
 
   return !restaurant ? (
