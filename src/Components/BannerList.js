@@ -68,7 +68,7 @@ const BannerList = ({ isLoading, banners }) => {
         </div>
       ) : (
         <div ref={sliderRef} className='keen-slider'>
-          {banners.card.card.gridElements.infoWithStyle.info.map((banner) => (
+            {banners?.card?.card?.gridElements?.infoWithStyle?.info?.map((banner) => (
             <Banner banner={banner} key={banner.id} />
           ))}
         </div>
